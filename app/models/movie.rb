@@ -26,8 +26,9 @@ class Movie < ApplicationRecord
   end
 
   def self.search(search)
-    where("title LIKE ?", "%#{search}%") 
+    where("title LIKE ? or director LIKE ?", "%#{search}%", "%#{search}%") 
     # where("director LIKE ?", "%#{search}%")
+    # "name like ? or description like ?"
   end
 
   protected
