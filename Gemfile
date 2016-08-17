@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
+gem 'factory_girl_rails', group: :development
+gem 'faker', group: :development
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,11 +1,5 @@
 class Admin::UsersController < ApplicationController
 
-  # before_action do
-  #   if current_user.id != 1
-  #     flash[:notice] = "No Admin for you! RAWR!"
-  #     redirect_to '/'
-  #   end
-  # end
 
   before_action :require_admin
 
@@ -17,6 +11,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all 
+    @users = User.order(:firstname).page(params[:page]).per(10)
   end 
+
+  def show 
+    # byebug
+    @message = 'anyhting'
+    @user = User.find(params[:id])
+  end 
+
+
+
 end

@@ -1,6 +1,10 @@
 <h1>List of all users</h1>
- 
-  <% @users.each do |user| %>
-    <p><%= user.full_name %></p>
-    <p><%= user.email %></p>
-  <% end %>
+
+<%= paginate @users %>
+
+<% @users.each do |user| %>
+  <div>
+  <p><%= link_to user.full_name, admin_user_path(user) %></p>
+  <p><%= user.email %></p>
+  </div>
+<% end %>
