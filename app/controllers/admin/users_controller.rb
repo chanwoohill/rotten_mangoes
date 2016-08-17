@@ -50,6 +50,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_path
+    UserMailer.delete_email(@user)
   end
 
   protected 

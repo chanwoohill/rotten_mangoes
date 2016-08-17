@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
     when '1' 
       @movies = @movies.where(["movies.runtime_in_minutes < ?", 90])
     when '2'
-      @movies = @movies.where(["movies.runtime_in_minutes > ? AND movies.runtime_in_minutes < ?", 90, 120])
+      @movies = @movies.where(["movies.runtime_in_minutes >= ? AND movies.runtime_in_minutes <= ?", 90, 120])
     when '3'
       @movies = @movies.where(["movies.runtime_in_minutes > ?", 120])
     end
