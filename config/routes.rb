@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   namespace :admin do
-    resources :users, only: [:index, :show]
-  end
+    resources :users
+  end 
 
   root to: 'movies#index'
 
