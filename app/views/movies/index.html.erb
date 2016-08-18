@@ -7,12 +7,7 @@
 <% end %>
 <hr>
 <% @movies.each do |movie| %>
-  <%= image_tag movie.poster_url(:thumb).to_s %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= movie.release_date %></h3>
-  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-  <p><%= movie.description %></p>
-  <hr>
+  <%= render partial: 'movie', object: movie %>
 <% end %>
 <%= link_to "Back to all movies", movies_path %><br/>
 
