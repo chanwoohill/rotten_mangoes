@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>RottenMangoes</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>Rotten Mangoes</title>
+    <%= render 'layouts/header' %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value) %>
     <% end %>
+    <%#= render 'layouts/nav' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
+
   </body>
 </html>
+
+

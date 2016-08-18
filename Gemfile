@@ -28,7 +28,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 # gem 'bootstrap-sass'
-gem 'foundation-rails'
+gem 'foundation-rails', group: :development
+gem 'rails_layout'
+
 gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
