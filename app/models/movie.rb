@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  scope :search, lambda { |search| where(["title LIKE ? or director LIKE ?", "%#{search}%", "%#{search}%"]) }
 
   has_many :reviews
   mount_uploader :poster, PosterUploader
@@ -23,12 +24,6 @@ class Movie < ApplicationRecord
 
   def review_average
     reviews.sum(:rating_out_of_ten)/reviews.size
-  end
-
-  def self.search(search)
-    where("title LIKE ? or director LIKE ?", "%#{search}%", "%#{search}%") 
-    # where("director LIKE ?", "%#{search}%")
-    # "name like ? or description like ?"
   end
 
   protected
