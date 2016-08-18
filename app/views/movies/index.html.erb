@@ -4,9 +4,10 @@
 <%= submit_tag "Search" %>
 <% end %>
 <hr>
-<% @movies.each do |movie| %>
-  <%= render partial: 'movie', object: movie %>
-<% end %>
-
+<div class="row">
+  <% @movies.each do |movie| %>
+    <%= render partial: 'movie', object: movie %>
+  <% end %>
+</div>
 
 
