@@ -1,13 +1,10 @@
-<%= form_tag(movies_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Movies" %>
-<%= select_tag :duration, options_for_select([ ["Under 90 minutes", 1],["Between 90 and 120 minutes", 2], ["Over 120 minutes", 3]], 1) %> 
-<%= submit_tag "Search" %>
-<% end %>
-<hr>
-<div class="row">
-  <% @movies.each do |movie| %>
+<%= render partial: 'search'%>
+<% @movies.each_slice(3) do |movie_slice| %>
+  <div class="row">
+  <% movie_slice.each do |movie| %>
     <%= render partial: 'movie', object: movie %>
   <% end %>
-</div>
+  </div>
+<% end %>
 
 
