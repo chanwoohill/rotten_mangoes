@@ -3,15 +3,15 @@ class Admin::UsersController < ApplicationController
 
   before_action :require_admin
 
-  def require_admin
-      unless current_user.try(:admin?)
-        flash[:notice] = "You must be an admin to access this page"
-        redirect_to '/'
-      end
-  end
-
   def index
     @users = User.order(:firstname).page(params[:page]).per(10)
+  end 
+
+  def impersonate
+    @user = User.find(params[:id])
+    session[:original_user_id] = current_user.id 
+    session[:user_id] = @user.id
+    redirect_to [:admin, :users], notice: "Switched to #{@user.full_name}"
   end 
 
   def show 
@@ -58,6 +58,23 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin)
   end
+
+  def require_admin
+    unless current_user.try(:admin?) || impersonating?
+      flash[:notice] = "You must be an admin to access this page"
+      redirect_to '/'
+    end
+  end
+
+  def impersonating?
+    original_user.try(:admin?)
+  end 
+
+  def original_user
+    User.find(session[:original_user_id]) if session[:original_user_id].present?
+  end 
+
+  helper_method :original_user, :require_admin, :impersonating?
 
 
 end

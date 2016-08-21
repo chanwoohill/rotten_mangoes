@@ -1,8 +1,8 @@
-<%= render partial: 'search'%>
+<%= render 'search' %>
 <% @movies.each_slice(3) do |movie_slice| %>
   <div class="row">
   <% movie_slice.each do |movie| %>
-    <%= render partial: 'movie', object: movie %>
+    <%= render 'movie', movie: movie %>
   <% end %>
   </div>
 <% end %>

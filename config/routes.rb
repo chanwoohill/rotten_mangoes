@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   namespace :admin do
-    resources :users
+    resources :users do
+      post 'impersonate', on: :member
+    end 
   end 
 
   root to: 'movies#index'
